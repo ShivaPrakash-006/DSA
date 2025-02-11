@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 int isEmpty(char *s, int top)
 {
@@ -19,8 +18,10 @@ int isFull(char *s, int top)
 
 void push(char *s, int *top, char v)
 {
-    if (isFull(s, *top))
+    if (isFull(s, *top)) {
         printf("Overflow!\n");
+        return;
+    }
     (*top)++;
     s[*top] = v;
 }

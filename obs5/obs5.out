@@ -1,0 +1,60 @@
+1.Push
+2.Pop
+3.Peek
+4.Exit
+Enter Your Choice: 1
+
+Enter Data: A
+Stack has 1 elements. A is the top element
+
+1.Push
+2.Pop
+3.Peek
+4.Exit
+Enter Your Choice: 1
+
+Enter Data: S
+Stack has 2 elements. S is the top element
+
+1.Push
+2.Pop
+3.Peek
+4.Exit
+Enter Your Choice: 1
+
+Enter Data: D
+Stack has 3 elements. D is the top element
+
+1.Push
+2.Pop
+3.Peek
+4.Exit
+Enter Your Choice: 3
+
+Stack has 3 elements. D is the top element
+
+1.Push
+2.Pop
+3.Peek
+4.Exit
+Enter Your Choice: 2
+
+D has been popped
+Stack has 2 elements. S is the top element
+
+1.Push
+2.Pop
+3.Peek
+4.Exit
+Enter Your Choice: 2
+
+S has been popped
+Stack has 1 elements. A is the top element
+
+1.Push
+2.Pop
+3.Peek
+4.Exit
+Enter Your Choice: 4
+
+Bye Bye!

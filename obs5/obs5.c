@@ -62,9 +62,7 @@ int main()
             case 1:
                 printf("Enter Data: ");
                 
-                do {
-                    data = getchar();
-                } while (data == '\n' || data == '\0');
+                do data = getchar(); while (data == '\n' || data == '\0');
                 push(s, &top, data);
                 printf("Stack has %i elements. %c is the top element\n",top + 1, peek(s, top));
                 break;

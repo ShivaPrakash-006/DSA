@@ -1,147 +1,101 @@
 #include <stdio.h>
-#include <stdlib.h>
 
-void printMatrix(int **mat, int r, int c) {
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            printf("%d ", mat[i][j]);
-        }
-        printf("\n");
+int isEmpty(char *s, int top)
+{
+    if (top == -1)
+        return 1;
+    else
+        return 0;
+}
+
+int isFull(char *s, int top)
+{
+    if (top == 99)
+        return 1;
+    else
+        return 0;
+}
+
+void push(char *s, int *top, char v)
+{
+    if (isFull(s, *top)) {
+        printf("Overflow!\n");
+        return;
     }
-    printf("\n");
+    (*top)++;
+    s[*top] = v;
 }
 
-int** createMatrix(int r, int c) {
-    int **mat = (int**) malloc(r * sizeof(int*));
-    for (int i = 0; i < r; i++) {
-        mat[i] = (int*) malloc(c * sizeof(int));
+char pop(char *s, int *top)
+{
+    if (isEmpty(s, *top)) {
+        printf("Underflow!\n");
+        return '\0';
     }
-
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++) {
-            printf("Matrix[%d][%d]: ", i, j);
-            scanf("%d", &mat[i][j]);
-        }
-    }
-    printf("\n");
-    printMatrix(mat, r, c);
-
-    return mat;
+    char v = s[*top];
+    (*top)--;
+    return v;
 }
 
-int** addMatrices() {
-  int r, c;
-  do {
-    printf("Row & Col for Matrix (r>0 c>0): ");
-    scanf("%d %d", &r, &c);
-  } while (r < 1 || c < 1);
-
-  int **mat1 = createMatrix(r, c);
-  int **mat2 = createMatrix(r, c);
-
-  int **matAdd = (int**) malloc(r * sizeof(int*));
-  for (int i = 0; i < r; i++) {
-    matAdd[i] = (int*) malloc(c * sizeof(int));
-  }
-
-  for (int i = 0; i < r; i++) {
-    for (int j = 0; j < c; j++) {
-      matAdd[i][j] = mat1[i][j] + mat2[i][j];
-    }
-  }
-
-  printMatrix(matAdd, r, c);
-  return matAdd;
+char peek(char *s, int top)
+{
+    if (isEmpty(s, top))
+        return '\0';
+    return s[top];
 }
 
-int** subMatrices() {
-  int r, c;
-  do {
-    printf("Row & Col for Matrix (r>0 c>0): ");
-    scanf("%d %d", &r, &c);
-  } while (r < 1 || c < 1);
-
-  int **mat1 = createMatrix(r, c);
-  int **mat2 = createMatrix(r, c);
-
-  int **matSub = (int**) malloc(r * sizeof(int*));
-  for (int i = 0; i < r; i++) {
-    matSub[i] = (int*) malloc(c * sizeof(int));
-    for (int j = 0; j < c; j++) 
-      matSub[i][j] = mat1[i][j] - mat2[i][j];
-  }
-
-  printMatrix(matSub, r, c);
-  return matSub;
+void display(char *s, int top)
+{
+    for (int i = top; i > -1; i++)
+        printf("%c\n", s[i]);
 }
 
-int** multiMatrix(){
-    int r1, c1, r2, c2;
-    do {
-        printf("Row & Col for Matrix1(r>0 c>0): "); scanf("%i %i", &r1, &c1);
-        printf("Row & Col for Matrix2(r>0 c>0): "); scanf("%i %i", &r2, &c2);
-        printf("\n");
-    } while (c1 != r2 || (r1<1) || r2 < 1 || c1 < 1 || c2 < 1);
-
-    int **mat1 = createMatrix(r1, c1);
-    int **mat2 = createMatrix(r2, c2);
-    int **matMulti = (int**) malloc(r1 * sizeof(int*));
-    for (int i=0; i<r1; i++)
-        matMulti[i] = (int*) malloc(c2*sizeof(int));
-
-    for (int i=0; i < r1; i++)
-        for (int j=0; j < c2; j++)
-            for (int k=0; k < c1; k++)
-                matMulti[i][j] += mat1[i][k] * mat2[k][j];
-
-    printMatrix(matMulti, r1, c2);
-    return matMulti;
-}
-
-int** transMatrix(){
-    int r, c;
-    do {
-        printf("Row & Col for Matrix(r>0 c>0): "); scanf("%i %i", &r, &c);
-    } while ((r<1) || (c<1));
-
-    int **mat = createMatrix(r,c);
-    int **matTrans = (int**) malloc(c * sizeof(int*));
-    for (int i=0; i<c; i++)
-        matTrans[i] = (int*) malloc(r * sizeof(int));
-
-    for (int i=0; i<c; i++)
-        for (int j=0; j<r; j++)
-            matTrans[i][j]=mat[j][i];
-
-    printMatrix(matTrans, c, r);
-    return matTrans;
-}
-
-int main (int argc, char *argv[]) {
-
+int main()
+{
     int choice = 0;
+    char data = '\0';
 
-    while (choice != 5) {
+    char s[100] = {};
+    int top = -1;
 
-        printf("1.Add\n2.Sub\n3.Multi\n4.Trans\n5.Exit\nEnter The Choice: ");
-        scanf("%d", &choice);
+    while (choice != 5)
+    {
+        printf("1.Push\n2.Pop\n3.Peek\n4.Exit\nEnter Your Choice: ");
+        scanf("%i", &choice); printf("\n");
 
-        switch (choice) {
-
+        switch (choice)
+        {
             case 1:
-                addMatrices();
+                printf("Enter Data: ");
+                
+                do data = getchar(); while (data == '\n' || data == '\0');
+                push(s, &top, data);
+                printf("Stack has %i elements. %c is the top element\n",top + 1, peek(s, top));
                 break;
 
             case 2:
-                subMatrices();
+                data = pop(s, &top);
+                if (data != '\0')
+                    printf("%c has been popped\n", data);
+                
+                if (isEmpty(s, top))
+                    printf("Stack is Empty\n");
+                else
+                    printf("Stack has %i elements. %c is the top element\n",top + 1, peek(s, top));
                 break;
 
             case 3:
-                multiMatrix();
+                if (isEmpty(s, top))
+                    printf("Stack is Empty\n");
+                else
+                    printf("Stack has %i elements. %c is the top element\n",top + 1, peek(s, top));
                 break;
 
             case 4:
-                transMatrix();
+                if (isEmpty(s, top))
+                    printf("Stack is Empty\n");
+                else
+                    display(s, top);
                 break;
 
             case 5:
@@ -150,12 +104,8 @@ int main (int argc, char *argv[]) {
 
             default:
                 printf("Invalid Choice!\n");
-                break;
-
         }
-
         printf("\n");
-
     }
 
     return 0;

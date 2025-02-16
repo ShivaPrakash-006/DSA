@@ -86,30 +86,44 @@ int icp(char op)
 
 int prec(char op1, char op2)
 {
-  if (isp(op1) >= icp(op2))
+  if (isp(op1) > icp(op2))
     return 1;
   else
     return 0;
 }
 
-void inToPost(char *exp, char *res)
+void strrev(char *str)
+{
+  int i = 0;
+  int j = strlen(str) - 1;
+
+  while (i<j) {
+    char c = str[i];
+    str[i] = str[j];
+    str[j] = c;
+    i++;
+    j--;
+  }
+}
+
+void inToPre(char *exp, char *res)
 {
   char s[100] = {};
   int top = -1;
 
-  for (int i = 0; i < strlen(exp); i++)
+  for (int i = strlen(exp) - 1; i >= 0; i--)
   {
     if (isalpha(exp[i]))
       res[strlen(res)] = exp[i];
-    else if (isOpenBrack(exp[i]))
+    else if (isCloseBrack(exp[i]))
       push(s, &top, exp[i]);
-    else if (isCloseBrack(exp[i])) {
-      while (!isOpenBrack(peek(s, top)))
+    else if (isOpenBrack(exp[i])) {
+      while (!isCloseBrack(peek(s, top)))
         res[strlen(res)] = pop(s, &top);
       pop(s, &top);
     }
     else if (isOperator(exp[i])) {
-      while (!isEmpty(s, top) && !isOpenBrack(peek(s, top)) && prec(peek(s, top), exp[i]))
+      while (!isEmpty(s, top) && !isCloseBrack(peek(s, top)) && prec(peek(s, top), exp[i]))
         res[strlen(res)] = pop(s, &top);
       push(s, &top, exp[i]);
     }
@@ -117,6 +131,8 @@ void inToPost(char *exp, char *res)
   
   while (!isEmpty(s, top))
     res[strlen(res)] = pop(s, &top);
+
+  strrev(res);
 }
 
 int main()
@@ -124,7 +140,7 @@ int main()
   char exp[100] = {};
   char res[100] = {};
   scanf("%s", exp);
-  inToPost(exp, res);
+  inToPre(exp, res);
   printf("%s", res);
 
   return 0;

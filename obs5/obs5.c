@@ -1,99 +1,132 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define MAX 100
 
 int isEmpty(char *s, int top)
 {
-    if (top == -1)
-        return 1;
-    else
-        return 0;
+  if (top == -1)
+    return 1;
+  else
+    return 0;
 }
 
 int isFull(char *s, int top)
 {
-    if (top == 99)
-        return 1;
-    else
-        return 0;
+  if (top == 99)
+    return 1;
+  else
+    return 0;
 }
 
 void push(char *s, int *top, char v)
 {
-    if (isFull(s, *top)) {
-        printf("Overflow!\n");
-        return;
-    }
+  if (!isFull(s, *top)) {
     (*top)++;
     s[*top] = v;
+  }
 }
 
 char pop(char *s, int *top)
 {
-    if (isEmpty(s, *top)) {
-        printf("Underflow!\n");
-        return '\0';
-    }
-    char v = s[*top];
-    (*top)--;
-    return v;
+  if (isEmpty(s, *top))
+    return '\0';
+  char v = s[*top];
+  (*top)--;
+  return v;
 }
 
 char peek(char *s, int top)
 {
-    if (isEmpty(s, top))
-        return '\0';
-    return s[top];
+  return s[top];
+}
+
+int isOpenBrack(char sym)
+{
+  if (sym == '(' || sym == '[' || sym == '{')
+    return 1;
+  else
+    return 0;
+}
+
+int isCloseBrack(char sym)
+{
+  if (sym == ')' || sym == ']' || sym == '}')
+    return 1;
+  else
+    return 0;
+}
+
+int isOperator(char sym)
+{
+  if (sym == '+' || sym == '-' || sym == '/' || sym == '*' || sym == '$')
+    return 1;
+  else
+    return 0;
+}
+
+int isp(char op)
+{
+  if (op == '$')
+    return 4;
+  else if (op == '/' || op == '*')
+    return 3;
+  else if (op == '+' || op == '-')
+    return 2;
+}
+
+int icp(char op)
+{
+  if (op == '$')
+    return 5;
+  else if (op == '/' || op == '*')
+    return 3;
+  else if (op == '+' || op == '-')
+    return 2;
+}
+
+int prec(char op1, char op2)
+{
+  if (isp(op1) >= icp(op2))
+    return 1;
+  else
+    return 0;
+}
+
+void inToPost(char *exp, char *res)
+{
+  char s[100] = {};
+  int top = -1;
+
+  for (int i = 0; i < strlen(exp); i++)
+  {
+    if (isalpha(exp[i]))
+      res[strlen(res)] = exp[i];
+    else if (isOpenBrack(exp[i]))
+      push(s, &top, exp[i]);
+    else if (isCloseBrack(exp[i])) {
+      while (!isOpenBrack(peek(s, top)))
+        res[strlen(res)] = pop(s, &top);
+      pop(s, &top);
+    }
+    else if (isOperator(exp[i])) {
+      while (!isEmpty(s, top) && !isOpenBrack(peek(s, top)) && prec(peek(s, top), exp[i]))
+        res[strlen(res)] = pop(s, &top);
+      push(s, &top, exp[i]);
+    }
+  }
+  
+  while (!isEmpty(s, top))
+    res[strlen(res)] = pop(s, &top);
 }
 
 int main()
 {
-    int choice = 0;
-    char data = '\0';
+  char exp[100] = {};
+  char res[100] = {};
+  scanf("%s", exp);
+  inToPost(exp, res);
+  printf("%s", res);
 
-    char s[100] = {};
-    int top = -1;
-
-    while (choice != 4)
-    {
-        printf("1.Push\n2.Pop\n3.Peek\n4.Exit\nEnter Your Choice: ");
-        scanf("%i", &choice); printf("\n");
-
-        switch (choice)
-        {
-            case 1:
-                printf("Enter Data: ");
-                
-                do data = getchar(); while (data == '\n' || data == '\0');
-                push(s, &top, data);
-                printf("Stack has %i elements. %c is the top element\n",top + 1, peek(s, top));
-                break;
-
-            case 2:
-                data = pop(s, &top);
-                if (data != '\0')
-                    printf("%c has been popped\n", data);
-                
-                if (isEmpty(s, top))
-                    printf("Stack is Empty\n");
-                else
-                    printf("Stack has %i elements. %c is the top element\n",top + 1, peek(s, top));
-                break;
-
-            case 3:
-                if (isEmpty(s, top))
-                    printf("Stack is Empty\n");
-                else
-                    printf("Stack has %i elements. %c is the top element\n",top + 1, peek(s, top));
-                break;
-
-            case 4:
-                printf("Bye Bye!\n");
-                break;
-
-            default:
-                printf("Invalid Choice!\n");
-        }
-        printf("\n");
-    }
-
-    return 0;
+  return 0;
 }

@@ -69,7 +69,7 @@ int main(){
     while (choice != 7)
     {
         printf("1. Power\n2. Factorial\n3. Fibonacci Series\n4. GCD\n5. Sum of n Natural Numbers\n6. Decimal to Binary\n7. Exit\nEnter Your Choice: ");
-        scanf("%i", &choice);
+        scanf("%i", &choice); printf("\n");
         switch (choice)
         {
         case 1:
@@ -81,7 +81,7 @@ int main(){
         case 2:
             printf("Enter Number: ");
             scanf("%i", &num1);
-            printf("%i! = %i\n", fact(num1));
+            printf("%i! = %i\n", num1, fact(num1));
             break;
 
         case 3:
@@ -103,9 +103,21 @@ int main(){
             scanf("%i", &num1);
             printf("Sum of first %i natural numbers is %i\n", num1, sum(num1));
             break;
+
+        case 6:
+            printf("Enter Decimal Number: ");
+            scanf("%i", &num1);
+            printf("%i in binary: %li\n", num1, bin(num1));
+            break;
+
+        case 7:
+            printf("Bye Bye!\n");
+            break;
         
         default:
+            printf("Invalid Choice!\n");
             break;
         }
+        printf("\n");
     }
 }

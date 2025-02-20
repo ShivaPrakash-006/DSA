@@ -69,5 +69,43 @@ int main(){
     while (choice != 7)
     {
         printf("1. Power\n2. Factorial\n3. Fibonacci Series\n4. GCD\n5. Sum of n Natural Numbers\n6. Decimal to Binary\n7. Exit\nEnter Your Choice: ");
+        scanf("%i", &choice);
+        switch (choice)
+        {
+        case 1:
+            printf("Enter Base and Power (Base Power): ");
+            scanf("%i %i", &num1, &num2);
+            printf("%i^%i = %f\n", num1, num2, power(num1, num2));
+            break;
+
+        case 2:
+            printf("Enter Number: ");
+            scanf("%i", &num1);
+            printf("%i! = %i\n", fact(num1));
+            break;
+
+        case 3:
+            printf("Enter Number of Terms: ");
+            scanf("%i", &num1);
+            for (int i = 1; i <= num1; i++)
+                printf("%i ", fib(i));
+            printf("\n");
+            break;
+            
+        case 4:
+            printf("Enter Numbers (num1 num2): ");
+            scanf("%i %i", &num1, &num2);
+            printf("GCD of %i and %i is %i\n", num1, num2, gcd(num1, num2));
+            break;
+            
+        case 5:
+            printf("Enter Number of terms: ");
+            scanf("%i", &num1);
+            printf("Sum of first %i natural numbers is %i\n", num1, sum(num1));
+            break;
+        
+        default:
+            break;
+        }
     }
 }

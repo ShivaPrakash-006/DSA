@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define MAX 5
+#define MAX 3
 
 int isFull(char *queue, int front, int rear)
 {
@@ -121,10 +121,9 @@ int main()
             insertRear(queue, &front, &rear, data);
             break;
 
-          case 3:
+          default:
             printf("Invalid Choice\n");
         }
-        display(queue, front, rear);
         break;
 
       case 2:
@@ -140,33 +139,20 @@ int main()
             data = deleteRear(queue, &front, &rear);
             break;
 
-          case 3:
+          default:
             printf("Invalid Choice\n");
             data = '\0';
         }
 
         if (data) printf("%c has been processed\n", data);
-        display(queue, front, rear);
         break;
 
       case 3:
-        printf("1. Front\n2. Rear\nEnter Your Choice: ");
-        scanf("%i", &choice);
-
-        switch (choice) {
-          case 1:
-            data = peekFront(queue, front, rear);
-            break;
-
-          case 2:
-            data = peekRear(queue, front, rear);
-            break;
-
-          case 3:
-            printf("Invalid Choice\n");
-            data = '\0';
-        }
+        data = peekFront(queue, front, rear);
         if (data) printf("%c is in the front\n", data);
+
+        data = peekRear(queue, front, rear);
+        if (data) printf("%c is in the rear\n", data);
         break;
 
       case 4:

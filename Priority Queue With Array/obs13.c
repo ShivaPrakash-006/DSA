@@ -82,7 +82,7 @@ void display(Data *queue, int front, int rear)
     printf("Queue is Empty\n");
     return;
   }
-  for (int i = front; i <= rear; i++) printf("%c ", queue[i]);
+  for (int i = front; i <= rear; i++) printf("%c|%i ", queue[i].value, queue[i].priority);
   printf("\n");
 }
 

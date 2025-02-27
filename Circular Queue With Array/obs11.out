@@ -1,0 +1,108 @@
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: P
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: O
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: S
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: S
+Queue is Full
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 4
+
+P O S 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 3
+
+P is in the front
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 2
+
+P has been processed
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 4
+
+O S 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: I
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 3
+
+O is in the front
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 4
+
+O S I 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 5
+
+Bye Bye!

@@ -75,13 +75,11 @@ int main()
         printf("Enter Data: ");
         do data = getchar(); while (data == '\n' || data == '\0');
         enqueue(queue, &front, &rear, data);
-        display(queue, front, rear);
         break;
 
       case 2:
         data = dequeue(queue, &front, &rear);
         if (data) printf("%c has been processed\n", data);
-        display(queue, front, rear);
         break;
 
       case 3:

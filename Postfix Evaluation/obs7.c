@@ -70,7 +70,7 @@ float postfixEval(const char *exp)
     return pop(stack, &top);
 }
 
-int main (int argc, char *argv[]) {
+int main () {
     char exp[MAX] = {};
     scanf("%s", exp);
     float val = postfixEval(exp);

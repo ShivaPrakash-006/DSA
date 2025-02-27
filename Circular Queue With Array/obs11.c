@@ -59,7 +59,7 @@ void display(char *queue, int front, int rear)
   printf("\n");
 }
 
-int main(int argc, int *argv[])
+int main()
 {
   int choice = 0, rear = -1, front = -1;
   char data = '\0';

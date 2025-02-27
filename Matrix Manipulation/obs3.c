@@ -117,7 +117,7 @@ int** transMatrix(){
     return matTrans;
 }
 
-int main (int argc, char *argv[]) {
+int main () {
 
     int choice = 0;
 

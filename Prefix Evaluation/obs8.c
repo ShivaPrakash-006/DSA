@@ -69,8 +69,8 @@ float prefixEval(const char *exp)
     }
     return pop(stack, &top);
 }
-//--+AB/*+CDEF$AB
-int main (int argc, char *argv[]) {
+
+int main () {
     char exp[MAX] = {};
     scanf("%s", exp);
     float val = prefixEval(exp);

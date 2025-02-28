@@ -63,17 +63,15 @@ char peek(Data *queue, int front, int rear)
     printf("Queue is Empty\n");
     return '\0';
   }
-  int pos = 0;
-  int min = queue[pos].priority;
-  char data = queue[pos].value;
+  int min = queue[0].priority;
+  char data = queue[0].value;
 
   for (int i = 1; i <= rear; i++)
     if (queue[i].priority < min) {
-      pos = i;
       min = queue[i].priority;
       data = queue[i].value;
     }
-  return queue[pos].value;
+  return data;
 }
 
 void display(Data *queue, int front, int rear)

@@ -1,0 +1,110 @@
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: A
+Enter Priority: 3
+A|3 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: B
+Enter Priority: 2
+A|3 B|2 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: B
+Enter Priority: 2
+A|3 B|2 B|2 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 1
+
+Enter Data: E
+Enter Priority: 1
+A|3 B|2 B|2 E|1 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 4
+
+A|3 B|2 B|2 E|1 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 3
+
+E is in the front
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 2
+
+E has been processed
+A|3 B|2 B|2 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 2
+
+B has been processed
+A|3 B|2 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 2
+
+B has been processed
+A|3 
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 2
+
+A has been processed
+Queue is Empty
+
+1. Enqueue
+2. Dequeue
+3. Peek
+4. Display
+5. Exit
+Enter Your Choice: 5
+
+Bye Bye!

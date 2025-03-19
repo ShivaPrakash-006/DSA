@@ -42,7 +42,7 @@ void insert(Node **head, int data, int pos)
     temp->next = new;
   }
 
-  else { //Insert Middle
+  else if (pos > 0) { //Insert Middle
     Node *temp = *head;
     int i = 1;
     while (i < pos && temp->next != NULL) {

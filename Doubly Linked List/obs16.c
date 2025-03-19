@@ -3,6 +3,7 @@
 
 typedef struct Node {
   int data;
+  struct Node* prev;
   struct Node* next;
 } Node;
 
@@ -25,49 +26,57 @@ void insert(Node **head, int data, int pos)
   Node *new = getNode();
   new->data = data;
   new->next = NULL;
+  new->prev = NULL;
 
-  if (*head == NULL) { //If Empty
+  if (*head == NULL)
     *head = new;
-  }
 
-  else if (pos == 0) { //Insert Beginning
+  else if (pos == 0) {
     new->next = *head;
     *head = new;
   }
 
-  else if (pos == -1) { //Insert End
+  else if (pos == -1) {
     Node *temp = *head;
     while (temp->next != NULL)
       temp = temp->next;
+    new->prev = temp;
     temp->next = new;
   }
 
-  else if (pos > 0) { //Insert Middle
+  else if (pos > 0) {
     Node *temp = *head;
     int i = 1;
     while (i < pos && temp->next != NULL) {
       temp = temp->next;
       i++;
     }
+    new->prev = temp;
     new->next = temp->next;
+    if (temp->next != NULL)
+      new->next->prev = new;
     temp->next = new;
   }
 }
 
 void delete(Node **head, int pos)
 {
-  if (*head == NULL) { //Empty
+  if (*head == NULL) 
     printf("Empty List\n");
-    return; 
+
+  else if ((*head)->next == NULL) {
+    free(*head);
+    *head = NULL;
   }
-  
-  else if (pos == 0) { //Delete Beginning
+
+  else if (pos == 0) {
     Node *toFree = *head;
     *head = (*head)->next;
+    (*head)->prev = NULL;
     free(toFree);
   }
 
-  else if (pos == -1) { //Delete End
+  else if (pos == -1) {
     Node *temp = *head;
     while (temp->next->next != NULL)
       temp = temp->next;
@@ -75,7 +84,7 @@ void delete(Node **head, int pos)
     temp->next = NULL;
   }
 
-  else if (pos > 0) { //Delete Middle
+  else if (pos > 0) {
     Node *temp = *head;
     int i = 1;
     while (i < pos && temp->next->next != NULL) {
@@ -84,6 +93,8 @@ void delete(Node **head, int pos)
     }
     Node *toFree = temp->next;
     temp->next = temp->next->next;
+    if (temp->next != NULL)
+      temp->next->prev = temp;
     free(toFree);
   }
 }
@@ -152,3 +163,4 @@ int main(){
   }
   return 0;
 }
+

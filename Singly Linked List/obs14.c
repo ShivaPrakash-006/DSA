@@ -10,41 +10,38 @@ Node* getNode() {
   return (Node*) malloc(sizeof(Node));
 }
 
-void display(Node *head, Node *tail)
+void display(Node *head)
 {
   Node *temp = head;
-  while (temp != tail) {
+  while (temp != NULL) {
     printf("%i ", temp->data);
     temp = temp->next;
   }
-  if (temp != NULL)
-    printf("%i", temp->data);
   printf("\n");
 }
 
-void insert(Node **head, Node **tail, int data, int pos)
+void insert(Node **head, int data, int pos)
 {
   Node *new = getNode();
   new->data = data;
+  new->next = NULL;
 
-  if (*head == NULL) {
-    *head = *tail = new;
-    (*head)->next = *tail;
-  }
+  if (*head == NULL) //If Empty
+    *head = new;
 
-  else if (pos == 0) { //Beginning
+  else if (pos == 0) { //Insert Beginning
     new->next = *head;
     *head = new;
-    (*tail)->next = *head;
   }
 
-  else if (pos == -1) { //End
-    new->next = *head;
-    (*tail)->next = new;
-    *tail = new;
+  else if (pos == -1) { //Insert End
+    Node *temp = *head;
+    while (temp->next != NULL)
+      temp = temp->next;
+    temp->next = new;
   }
 
-  else if (pos > 0) { //Middle
+  else if (pos > 0) { //Insert Middle
     Node *temp = *head;
     int i = 1;
     while (i < pos && temp->next != NULL) {
@@ -56,35 +53,33 @@ void insert(Node **head, Node **tail, int data, int pos)
   }
 }
 
-void delete(Node **head, Node **tail, int pos)
+void delete(Node **head, int pos)
 {
-  if (*head == NULL) {
+  if (*head == NULL) { //Empty
     printf("Empty List\n");
-    return;
+    return; 
   }
 
-  if (*head == *tail) {
+  else if ((*head)->next == NULL) {
     free(*head);
-    *head = *tail = NULL;
+    *head = NULL;
   }
-
-  else if (pos == 0) {
+  
+  else if (pos == 0) { //Delete Beginning
     Node *toFree = *head;
     *head = (*head)->next;
-    (*tail)->next = *head;
     free(toFree);
   }
 
-  else if (pos == -1) {
+  else if (pos == -1) { //Delete End
     Node *temp = *head;
-    while (temp->next != *tail)
+    while (temp->next->next != NULL)
       temp = temp->next;
-    free(*tail);
-    *tail = temp;
-    (*tail)->next = *head;
+    free(temp->next);
+    temp->next = NULL;
   }
 
-  else if (pos > 0) { //Middle
+  else if (pos > 0) { //Delete Middle
     Node *temp = *head;
     int i = 1;
     while (i < pos && temp->next->next != NULL) {
@@ -97,23 +92,22 @@ void delete(Node **head, Node **tail, int pos)
   }
 }
 
-int search(Node *head, Node *tail, int data) 
+int search(Node *head, int data)
 {
   Node *temp = head;
   int i = 0;
-  while (temp != tail) {
+  while (temp != NULL) {
     if (temp->data == data)
-      return i;
+      return i; //Found
     temp = temp->next;
     i++;
   }
-  if (temp != NULL && temp->data == data)
-    return i;
-  return -1;
+
+  return -1; //Not Found
 }
 
 int main(){
-  Node *head = NULL, *tail = NULL;
+  Node *head = NULL;
   int data, pos, choice = 0;
 
   while (choice != 5) {
@@ -126,25 +120,25 @@ int main(){
         printf("Enter Position (0->Beg, -1->End): "); scanf("%i", &pos);
         if (pos < -1)
           printf("Invalid Position\n");
-        insert(&head, &tail, data, pos);
-        display(head, tail);
+        insert(&head, data, pos);
+        display(head);
         break;
 
       case 2:
         printf("Enter Position (0->Beg, -1->End): "); scanf("%i", &pos);
         if (pos < -1)
           printf("Invalid Position\n");
-        delete(&head, &tail, pos);
-        display(head, tail);
+        delete(&head, pos);
+        display(head);
         break;
 
       case 3:
-        display(head, tail);
+        display(head);
         break;
 
       case 4:
         printf("Enter Data: "); scanf("%i", &data);
-        pos = search(head, tail, data);
+        pos = search(head, data);
         if (pos != -1)
           printf("%i is at position %i\n", data, pos);
         else

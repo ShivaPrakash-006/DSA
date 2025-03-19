@@ -107,7 +107,7 @@ int search(Node *head, Node *tail, int data)
     temp = temp->next;
     i++;
   }
-  if (temp->data == data)
+  if (temp != NULL && temp->data == data)
     return i;
   return -1;
 }

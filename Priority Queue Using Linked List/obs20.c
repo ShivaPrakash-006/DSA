@@ -9,9 +9,9 @@ typedef struct Node {
 
 Node *getNode() { return (Node *)malloc(sizeof(Node)); }
 
-void display(Node *front, Node *rear) {
+void display(Node *front) {
   Node *temp = front;
-  printf("Front ->");
+  printf("Front -> ");
   while (temp != NULL) {
     printf("%c|%i ", temp->data, temp->priority);
     temp = temp->next;
@@ -19,14 +19,14 @@ void display(Node *front, Node *rear) {
   printf("\n");
 }
 
-void enqueue(Node **front, Node **rear, char data, int priority) {
+void enqueue(Node **front, char data, int priority) {
   Node *new = getNode();
   new->data = data;
   new->priority = priority;
   new->next = NULL;
 
-  if (*rear == NULL)
-    *front = *rear = new;
+  if (*front == NULL)
+    *front = new;
 
   else if ((*front)->priority > priority) {
     new->next = *front;
@@ -44,7 +44,7 @@ void enqueue(Node **front, Node **rear, char data, int priority) {
   }
 }
 
-char dequeue(Node **front, Node **rear) {
+char dequeue(Node **front) {
   if (*front == NULL)
     return '\0';
   else {
@@ -56,7 +56,7 @@ char dequeue(Node **front, Node **rear) {
   }
 }
 
-char peek(Node *front, Node *rear) {
+char peek(Node *front) {
   if (front == NULL)
     return '\0';
   else
@@ -64,7 +64,7 @@ char peek(Node *front, Node *rear) {
 }
 
 int main() {
-  Node *front = NULL, *rear = NULL;
+  Node *front = NULL;
   int choice = 0, priority = 0;
   char data = '\0';
 
@@ -78,25 +78,25 @@ int main() {
     case 1:
       printf("Enter Data & Priority (d p): ");
       scanf("\n%c %i", &data, &priority);
-      enqueue(&front, &rear, data, priority);
-      display(front, rear);
+      enqueue(&front, data, priority);
+      display(front);
       break;
 
     case 2:
-      data = dequeue(&front, &rear);
+      data = dequeue(&front);
       if (data) {
         printf("%c has been Dequeued\n", data);
-        display(front, rear);
+        display(front);
       } else
         printf("Empty Queue\n");
       break;
 
     case 3:
-      display(front, rear);
+      display(front);
       break;
 
     case 4:
-      data = peek(front, rear);
+      data = peek(front);
       if (data)
         printf("%c -> Front\n", data);
       else

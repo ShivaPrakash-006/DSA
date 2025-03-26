@@ -1,41 +1,36 @@
 #include <stdio.h>
 #define MAX 3
 
-int isFull(char *queue, int front, int rear)
-{
-  return rear == MAX-1;
-}
+int isFull(char *queue, int front, int rear) { return rear == MAX - 1; }
 
-int isEmpty(char *queue, int front, int rear)
-{
-  return front == -1;
-}
+int isEmpty(char *queue, int front, int rear) { return front == -1; }
 
-void enqueue(char *queue, int *front, int *rear, char data)
-{
+void enqueue(char *queue, int *front, int *rear, char data) {
   if (isFull(queue, *front, *rear)) {
     printf("Queue is Full\n");
     return;
   }
-  if (isEmpty(queue, *front, *rear)) (*rear) = (*front) = 0;
-  else (*rear)++;
+  if (isEmpty(queue, *front, *rear))
+    (*rear) = (*front) = 0;
+  else
+    (*rear)++;
   queue[*rear] = data;
 }
 
-char dequeue(char *queue, int *front, int *rear)
-{
+char dequeue(char *queue, int *front, int *rear) {
   if (isEmpty(queue, *front, *rear)) {
     printf("Queue is Empty\n");
     return '\0';
   }
   char data = queue[*front];
-  if ((*front) == (*rear)) (*front) = (*rear) = -1;
-  else (*front)++;
+  if ((*front) == (*rear))
+    (*front) = (*rear) = -1;
+  else
+    (*front)++;
   return data;
 }
 
-char peek(char *queue, int front, int rear)
-{
+char peek(char *queue, int front, int rear) {
   if (isEmpty(queue, front, rear)) {
     printf("Queue is Empty\n");
     return '\0';
@@ -43,59 +38,64 @@ char peek(char *queue, int front, int rear)
   return queue[front];
 }
 
-void display(char *queue, int front, int rear)
-{
+void display(char *queue, int front, int rear) {
   if (isEmpty(queue, front, rear)) {
     printf("Queue is Empty\n");
     return;
   }
-  for (int i = front; i <= rear; i++) printf("%c ", queue[i]);
+  for (int i = front; i <= rear; i++)
+    printf("%c ", queue[i]);
   printf("\n");
 }
 
-int main()
-{
+int main() {
   int choice = 0, rear = -1, front = -1;
   char data = '\0';
 
   char queue[MAX] = {};
 
   while (choice != 5) {
-    printf("1. Enqueue\n2. Dequeue\n3. Peek\n4. Display\n5. Exit\nEnter Your Choice: ");
-    scanf("%i", &choice); printf("\n");
+    printf("1. Enqueue\n2. Dequeue\n3. Peek\n4. Display\n5. Exit\nEnter Your "
+           "Choice: ");
+    scanf("%i", &choice);
+    printf("\n");
 
     switch (choice) {
-      case 1:
-        printf("Enter Data: ");
-        do data = getchar(); while (data == '\n' || data == '\0');
-        enqueue(queue, &front, &rear, data);
-        display(queue, front, rear);
-        break;
+    case 1:
+      printf("Enter Data: ");
+      do
+        data = getchar();
+      while (data == '\n' || data == '\0');
+      enqueue(queue, &front, &rear, data);
+      display(queue, front, rear);
+      break;
 
-      case 2:
-        data = dequeue(queue, &front, &rear);
-        if (data) printf("%c has been processed\n", data);
-        display(queue, front, rear);
-        break;
+    case 2:
+      data = dequeue(queue, &front, &rear);
+      if (data)
+        printf("%c has been processed\n", data);
+      display(queue, front, rear);
+      break;
 
-      case 3:
-        data = peek(queue, front, rear);
-        if (data) printf("%c is in the front\n", data);
-        break;
+    case 3:
+      data = peek(queue, front, rear);
+      if (data)
+        printf("%c is in the front\n", data);
+      break;
 
-      case 4:
-        display(queue, front, rear);
-        break;
+    case 4:
+      display(queue, front, rear);
+      break;
 
-      case 5:
-        printf("Bye Bye!\n");
-        break;
+    case 5:
+      printf("Bye Bye!\n");
+      break;
 
-      default:
-        printf("Invalid Choice\n");
+    default:
+      printf("Invalid Choice\n");
     }
     printf("\n");
   }
-  
+
   return 0;
 }

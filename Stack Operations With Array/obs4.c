@@ -30,7 +30,7 @@ char peek(char *s, int top) {
 }
 
 void display(char *s, int top) {
-  for (int i = top; i > -1; i++)
+  for (int i = top; i > -1; i--)
     printf("%c\n", s[i]);
 }
 
@@ -42,7 +42,7 @@ int main() {
   int top = -1;
 
   while (choice != 5) {
-    printf("1.Push\n2.Pop\n3.Peek\n4.Exit\nEnter Your Choice: ");
+    printf("1.Push\n2.Pop\n3.Peek\n4.Display\n5.Exit\nEnter Your Choice: ");
     scanf("%i", &choice);
     printf("\n");
 
@@ -60,7 +60,7 @@ int main() {
 
     case 2:
       data = pop(s, &top);
-      if (data != '\0')
+      if (data)
         printf("%c has been popped\n", data);
 
       if (isEmpty(s, top))

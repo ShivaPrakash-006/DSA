@@ -57,6 +57,7 @@ int isp(char op) {
     return 3;
   else if (op == '+' || op == '-')
     return 2;
+  return 0;
 }
 
 int icp(char op) {
@@ -66,6 +67,7 @@ int icp(char op) {
     return 3;
   else if (op == '+' || op == '-')
     return 2;
+  return 0;
 }
 
 int prec(char op1, char op2) {

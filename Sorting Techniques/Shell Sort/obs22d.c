@@ -6,14 +6,13 @@ void shellSort(int *arr, int n) {
   do {
     do {
       swapped = 0;
-      for (int i = 0; i < n - gap; i++) {
+      for (int i = 0; i < n - gap; i++)
         if (arr[i] > arr[i + gap]) {
           int temp = arr[i];
           arr[i] = arr[i + gap];
           arr[i + gap] = temp;
           swapped = 1;
         }
-      }
     } while (swapped == 1);
     gap = gap / 2;
   } while (gap > 0);

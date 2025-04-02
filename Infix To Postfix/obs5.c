@@ -29,25 +29,12 @@ char peek(char *s, int top) {
     return s[top];
 }
 
-int isOpenBrack(char sym) {
-  if (sym == '(' || sym == '[' || sym == '{')
-    return 1;
-  else
-    return 0;
-}
+int isOpenBrack(char sym) { return (sym == '(' || sym == '[' || sym == '{'); }
 
-int isCloseBrack(char sym) {
-  if (sym == ')' || sym == ']' || sym == '}')
-    return 1;
-  else
-    return 0;
-}
+int isCloseBrack(char sym) { return (sym == ')' || sym == ']' || sym == '}'); }
 
 int isOperator(char sym) {
-  if (sym == '+' || sym == '-' || sym == '/' || sym == '*' || sym == '$')
-    return 1;
-  else
-    return 0;
+  return (sym == '+' || sym == '-' || sym == '/' || sym == '*' || sym == '$');
 }
 
 int isp(char op) {
@@ -70,12 +57,7 @@ int icp(char op) {
   return 0;
 }
 
-int prec(char op1, char op2) {
-  if (isp(op1) >= icp(op2))
-    return 1;
-  else
-    return 0;
-}
+int prec(char op1, char op2) { return (isp(op1) >= icp(op2)); }
 
 void inToPost(char *exp, char *res) {
   char s[100] = {};
@@ -107,7 +89,7 @@ int main() {
   char res[100] = {};
   scanf("%s", exp);
   inToPost(exp, res);
-  printf("%s", res);
+  printf("%s\n", res);
 
   return 0;
 }

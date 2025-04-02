@@ -1,0 +1,42 @@
+Root: 1
+Left of 1: 2
+Left of 2: 4
+Left of 4: 5
+Left of 5: 6
+Left of 6: -1
+Right of 6: -1
+Right of 5: -1
+Right of 4: 7
+Left of 7: -1
+Right of 7: 8
+Left of 8: -1
+Right of 8: -1
+Right of 2: 9
+Left of 9: -1
+Right of 9: 10
+Left of 10: -1
+Right of 10: -1
+Right of 1: 3
+Left of 3: 11
+Left of 11: -1
+Right of 11: -1
+Right of 3: 12
+Left of 12: 13
+Left of 13: -1
+Right of 13: -1
+Right of 12: 14
+Left of 14: 15
+Left of 15: -1
+Right of 15: 17
+Left of 17: -1
+Right of 17: 18
+Left of 18: -1
+Right of 18: -1
+Right of 14: 16
+Left of 16: -1
+Right of 16: 19
+Left of 19: -1
+Right of 19: -1
+In Order Traversal: 6 5 4 7 8 2 9 10 1 11 3 13 12 15 17 18 14 16 19 
+Pre Order Traversal: 1 2 4 5 6 7 8 9 10 3 11 12 13 14 15 17 18 16 19 
+Post Order Traversal: 6 5 8 7 4 10 9 2 11 13 18 17 15 19 16 14 12 3 1 

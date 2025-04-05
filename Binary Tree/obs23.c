@@ -50,11 +50,9 @@ int main() {
   Node *root = create();
   printf("In Order Traversal: ");
   inOrder(root);
-  printf("\n");
-  printf("Pre Order Traversal: ");
+  printf("\nPre Order Traversal: ");
   preOrder(root);
-  printf("\n");
-  printf("Post Order Traversal: ");
+  printf("\nPost Order Traversal: ");
   postOrder(root);
   printf("\n");
 

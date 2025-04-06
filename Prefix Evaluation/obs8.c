@@ -43,6 +43,7 @@ float operate(float op1, float op2, char op) {
   case '$':
     return pow(op1, op2);
   }
+  return 0.f;
 }
 
 float prefixEval(const char *exp) {

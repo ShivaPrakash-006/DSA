@@ -19,7 +19,7 @@ void insert(Node **head, Node *term) {
   } else {
     Node *temp = *head;
     while (temp->next != NULL) {
-      if (temp->expo < temp->next->expo)
+      if (term->expo > temp->next->expo)
         break;
       temp = temp->next;
     }

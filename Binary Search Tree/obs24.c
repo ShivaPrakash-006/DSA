@@ -66,11 +66,11 @@ Node *delete(Node *root, int data) {
       free(temp);
     } else if (root->left == NULL) {
       Node *temp = root;
-      root = root->left;
+      root = root->right;
       free(temp);
     } else if (root->right == NULL) {
       Node *temp = root;
-      root = root->right;
+      root = root->left;
       free(temp);
     } else {
       Node *temp = min(root->right);

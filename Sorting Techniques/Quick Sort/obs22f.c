@@ -3,7 +3,7 @@
 int partition(int *arr, int low, int high) {
   int pivot = arr[low];
   int i = low + 1, j = high;
-  while (i <= j) {
+  while (i < j) {
     while (arr[i] < pivot)
       i++;
     while (arr[j] > pivot)

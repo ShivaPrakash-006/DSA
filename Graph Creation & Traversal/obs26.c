@@ -111,4 +111,6 @@ int main() {
   DFS(graph, n);
   printf("BFS: ");
   BFS(graph, n);
+
+  return 0;
 }

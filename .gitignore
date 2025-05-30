@@ -1,4 +1,5 @@
 DataStructures.code-workspace
+tests
 .vscode/tasks.json
 *.html
 *.out
